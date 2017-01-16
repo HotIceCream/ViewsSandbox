@@ -26,7 +26,7 @@ public class AnimationsActivity extends AppCompatActivity {
 
     public void onCatClicked(View sharedView) {
         getSupportFragmentManager().beginTransaction()
-                .addSharedElement(sharedView, "image1")
+                .addSharedElement(sharedView, "image")
                 .replace(R.id.container, SecondFragment.newInstance())
                 .addToBackStack("second")
                 .commit();
