@@ -2,6 +2,6 @@ apply from: "../application.gradle"
 
 android {
     defaultConfig {
-        applicationId "ru.hoticecream.viewssandbox"
+        applicationId "ru.hoticecream.animations"
     }
 }

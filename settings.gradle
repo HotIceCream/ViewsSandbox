@@ -1,1 +1,4 @@
-include ':touch', ':measure', ':stylessandbox'
+include ':touch',
+        ':measure',
+        ':stylessandbox',
+        ":animations"

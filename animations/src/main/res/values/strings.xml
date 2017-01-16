@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ViewsSandbox</string>
+    <string name="title_activity_touch">TouchActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+</resources>
