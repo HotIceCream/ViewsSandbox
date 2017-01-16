@@ -12,8 +12,6 @@ import ru.hoticecream.animations.activities.AnimationsActivity;
 
 public class BaseFragment extends AppCompatDialogFragment {
 
-    public static final String IMAGE_URL = "http://elite-british.by/wp-content/uploads/2014/12/britanskij-kotenok-zolotaja-shinshilla.jpg";
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

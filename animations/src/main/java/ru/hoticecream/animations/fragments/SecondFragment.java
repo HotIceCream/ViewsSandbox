@@ -27,10 +27,18 @@ import ru.hoticecream.animations.R;
 
 public class SecondFragment extends BaseFragment {
 
+    private static final String KEY_ITEM = "item";
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.image_cat)
     ImageView imageCat;
+    private FirstFragment.CatItem item;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        item = getArguments().getParcelable(KEY_ITEM);
+    }
 
     @Nullable
     @Override
@@ -38,14 +46,17 @@ public class SecondFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_second, container, false);
         ButterKnife.bind(this, view);
         getViewParent().setSupportActionBar(toolbar);
-        Picasso.with(getContext()).load(IMAGE_URL).into(imageCat);
-        ViewCompat.setTransitionName(imageCat, "image1");
+        Picasso.with(getContext()).load(item.url).into(imageCat);
+        ViewCompat.setTransitionName(imageCat, item.name);
         return view;
     }
 
 
-    public static SecondFragment newInstance() {
+    public static SecondFragment newInstance(FirstFragment.CatItem item) {
         SecondFragment fragment = new SecondFragment();
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(KEY_ITEM, item);
+        fragment.setArguments(bundle);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             fragment.setSharedElementEnterTransition(new DetailsTransition());
             fragment.setEnterTransition(new Fade());

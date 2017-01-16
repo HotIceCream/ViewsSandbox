@@ -24,10 +24,10 @@ public class AnimationsActivity extends AppCompatActivity {
         }
     }
 
-    public void onCatClicked(View sharedView) {
+    public void onCatClicked(View sharedView, FirstFragment.CatItem item) {
         getSupportFragmentManager().beginTransaction()
-                .addSharedElement(sharedView, "image")
-                .replace(R.id.container, SecondFragment.newInstance())
+                .addSharedElement(sharedView, item.name)
+                .replace(R.id.container, SecondFragment.newInstance(item))
                 .addToBackStack("second")
                 .commit();
     }

@@ -1,6 +1,8 @@
 package ru.hoticecream.animations.fragments;
 
 import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -32,20 +34,30 @@ public class FirstFragment extends BaseFragment {
     @BindView(R.id.recycler)
     RecyclerView recyclerView;
 
+    private final CatsAdapter adapter = new CatsAdapter();
+    private View view;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_first, container, false);
+        if (view != null) {
+            return view;
+        }
+        view = inflater.inflate(R.layout.fragment_first, container, false);
         ButterKnife.bind(this, view);
         getViewParent().setSupportActionBar(toolbar);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(new CatsAdapter());
+        recyclerView.setAdapter(adapter);
         return view;
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
+
     void onCatClick(View image, CatItem item) {
-        ViewCompat.setTransitionName(image, item.name);
-        getViewParent().onCatClicked(image);
+        getViewParent().onCatClicked(image, item);
     }
 
     public class CatsAdapter extends RecyclerView.Adapter<CatsHolder> {
@@ -103,19 +115,48 @@ public class FirstFragment extends BaseFragment {
 
         public void bind(CatItem catItem) {
             this.currentItem = catItem;
+            ViewCompat.setTransitionName(imageCat, catItem.name);
             Picasso.with(imageCat.getContext()).load(catItem.url).into(imageCat);
             textName.setText(catItem.name);
         }
     }
 
-    public static class CatItem {
+    public static class CatItem implements Parcelable {
         String url;
-        String name;
+        public String name;
 
         public CatItem(String url, String name) {
             this.url = url;
             this.name = name;
         }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeString(this.url);
+            dest.writeString(this.name);
+        }
+
+        protected CatItem(Parcel in) {
+            this.url = in.readString();
+            this.name = in.readString();
+        }
+
+        public static final Parcelable.Creator<CatItem> CREATOR = new Parcelable.Creator<CatItem>() {
+            @Override
+            public CatItem createFromParcel(Parcel source) {
+                return new CatItem(source);
+            }
+
+            @Override
+            public CatItem[] newArray(int size) {
+                return new CatItem[size];
+            }
+        };
     }
 
     public static FirstFragment newInstance() {
