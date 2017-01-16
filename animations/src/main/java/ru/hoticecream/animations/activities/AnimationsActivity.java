@@ -2,6 +2,7 @@ package ru.hoticecream.animations.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 import ru.hoticecream.animations.R;
 import ru.hoticecream.animations.fragments.FirstFragment;
@@ -23,8 +24,9 @@ public class AnimationsActivity extends AppCompatActivity {
         }
     }
 
-    public void onCatClicked() {
+    public void onCatClicked(View sharedView) {
         getSupportFragmentManager().beginTransaction()
+                .addSharedElement(sharedView, "image1")
                 .replace(R.id.container, SecondFragment.newInstance())
                 .addToBackStack("second")
                 .commit();

@@ -2,6 +2,7 @@ package ru.hoticecream.animations.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,13 +33,14 @@ public class FirstFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_first, container, false);
         ButterKnife.bind(this, view);
         getViewParent().setSupportActionBar(toolbar);
+        ViewCompat.setTransitionName(imageCat, "image1");
         Picasso.with(getContext()).load(IMAGE_URL).into(imageCat);
         return view;
     }
 
     @OnClick(R.id.image_cat)
     void onCatClick() {
-        getViewParent().onCatClicked();
+        getViewParent().onCatClicked(imageCat);
     }
 
     public static FirstFragment newInstance() {
