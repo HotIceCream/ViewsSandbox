@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import ru.hoticecream.animations.R;
+import ru.hoticecream.animations.fragments.FirstFragment;
+import ru.hoticecream.animations.fragments.SecondFragment;
 
 
 public class AnimationsActivity extends AppCompatActivity {
@@ -14,5 +16,17 @@ public class AnimationsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_animations);
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.container, FirstFragment.newInstance())
+                    .commit();
+        }
+    }
+
+    public void onCatClicked() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container, SecondFragment.newInstance())
+                .addToBackStack("second")
+                .commit();
     }
 }

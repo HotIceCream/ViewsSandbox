@@ -1,37 +1,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             android:layout_gravity="center_horizontal"
-             android:paddingBottom="@dimen/activity_vertical_margin"
-             android:paddingLeft="@dimen/activity_horizontal_margin"
-             android:paddingRight="@dimen/activity_horizontal_margin"
-             android:paddingTop="@dimen/activity_vertical_margin"
-             tools:context="ru.hoticecream.animations.activities.AnimationsActivity">
-
-
-    <ru.hoticecream.viewssandbox.widgets.MyFrameLayout
-        android:id="@+id/layout_3"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_gravity="center"
-        android:background="#ff0000">
-
-        <ru.hoticecream.viewssandbox.widgets.MyFrameLayout
-            android:id="@+id/layout_2"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_gravity="center"
-            android:background="#00ff00">
-
-            <ru.hoticecream.viewssandbox.widgets.MyFrameLayout
-                android:id="@+id/layout_1"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center"
-                android:background="#0000ff"/>
-        </ru.hoticecream.viewssandbox.widgets.MyFrameLayout>
-    </ru.hoticecream.viewssandbox.widgets.MyFrameLayout>
-
-
-</FrameLayout>
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    tools:context="ru.hoticecream.animations.activities.AnimationsActivity" />
